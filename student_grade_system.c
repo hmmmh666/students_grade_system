@@ -8,6 +8,7 @@ struct Student
 };
 struct Student students[MAX_STUDENTS];
 int count = 0;
+//添加学生信息
 void addStudent()
 {
     printf("请输入学生姓名：\n");
@@ -19,6 +20,7 @@ void addStudent()
     count++;
     printf("学生成绩添加成功!\n");
 }
+//展示学生成绩
 void displayStudents()
 {
     printf("学生成绩列表：\n");
@@ -29,6 +31,7 @@ void displayStudents()
     }
     printf("学生成绩显示成功!\n");
 }
+//查询学生信息
 void searchStudent()
 {
     int id;
@@ -44,6 +47,7 @@ void searchStudent()
     }
     printf("未找到该学生的成绩信息!\n");
 }
+//删除学生信息
 void deleteStudent()
 {
     int id;
@@ -64,6 +68,28 @@ void deleteStudent()
     }
     printf("未找到该学生的成绩信息！\n");
 }
+//修改学生信息
+void modifyStudent()
+{
+    int id;
+    printf("请输入你要修改的信息:\n");
+    scanf("%d",&id);
+    for(int i=0;i<count;i++)
+    {
+        if(students[i].id == id)
+        {
+            printf("请输入新的学生姓名:\n");
+            scanf("%s",&students[i].name);
+            printf("请输入新的学生学号：\n");
+            scanf("%d",&students[i].id);
+            printf("请输入新的学生分数:\n");
+            scanf("%f",&students[i].score);
+            printf("学生信息修改成功!\n");
+            return;
+        }
+    }
+    printf("未找到该学生的成绩信息!\n");
+}
 int main()
 {
     int choice;
@@ -74,7 +100,8 @@ int main()
         printf("2.显示学生成绩\n");
         printf("3.查询学生成绩\n");
         printf("4.删除学生成绩\n");
-        printf("5.退出系统\n");
+        printf("5.修改学生信息\n");
+        printf("6.退出系统\n");
         printf("请输入你的选择:\n");
         scanf("%d",&choice);
         switch(choice)
@@ -92,6 +119,9 @@ int main()
                 deleteStudent();
                 break;
             case 5:
+                modifyStudent();
+                break;
+            case 6:
                 printf("退出系统成功!\n");
                 return 0;
             default:
